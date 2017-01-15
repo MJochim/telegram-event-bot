@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-import sys
-import time
-
 from telepot import telepot
 from telepot.telepot.delegate import include_callback_query_chat_id, pave_event_space, per_chat_id, create_open
 from telepot.telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
