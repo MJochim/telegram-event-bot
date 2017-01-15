@@ -123,7 +123,7 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		if content_type == 'text':
 			text = msg['text'].lower()
 
-			if text == 'add':
+			if text == '/klettern':
 				self.new_event()
 			elif text == '/wann':
 				for i, v in enumerate(self._events):
