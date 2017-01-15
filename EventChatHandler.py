@@ -17,6 +17,15 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		self._new_events = dict()
 
 
+	## Overwrite _idle handler so that this instance only gets killed when
+	## it holds no data
+	def on__idle(self, event):
+		if len(self._events) == 0:
+			# The base-class on__idle() will terminate this instance
+			# by raising an exception
+			super(EventChatHandler, self).on__idle(event)
+
+
 	def event_introduction(self, event):
 		text = 'Juhu, wir gehen '
 		if event and event.getDate() != '':

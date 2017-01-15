@@ -11,8 +11,7 @@ TOKEN = ''
 ## Create the bot object, associate it with the handler class
 bot = telepot.DelegatorBot(TOKEN, [
 	include_callback_query_chat_id(pave_event_space()) (
-		# FIXME the timeout should not be there
-		per_chat_id(), create_open, EventChatHandler, timeout=10
+		per_chat_id(), create_open, EventChatHandler, timeout=3600
 	)
 ])
 
