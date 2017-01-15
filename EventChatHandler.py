@@ -47,7 +47,7 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		elif event.getDate() == '':
 			self.ask_for_date(message_id)
 		else:
-			self.editMessage(message_id, self.event_introduction(event))
+			self.bot.editMessageText(message_id, self.event_introduction(event))
 			self._events.append(self._new_events[message_id])
 			del self._new_events[message_id]
 
@@ -63,7 +63,7 @@ class EventChatHandler(telepot.helper.ChatHandler):
 			[InlineKeyboardButton(text='Im Westen', callback_data='create_place=Westen')],
 		])
 
-		self.editMessage(message_id, text=text, reply_markup = markup)
+		self.bot.editMessageText(message_id, text=text, reply_markup = markup)
 
 
 	def ask_for_date(self, message_id): 
@@ -77,7 +77,7 @@ class EventChatHandler(telepot.helper.ChatHandler):
 			[InlineKeyboardButton(text='Am Dienstag', callback_data='create_date=Dienstag')],
 		])
 
-		self.editMessage(message_id, text=text, reply_markup = markup)
+		self.bot.editMessageText(message_id, text=text, reply_markup = markup)
 
 
 
@@ -114,7 +114,3 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		if content_type == 'text':
 			if msg['text'].lower() == 'add':
 				self.new_event()
-			
-
-	def editMessage (self, message_id, *args, **kwargs):
-		self.bot.editMessageText(message_id, *args, **kwargs)
