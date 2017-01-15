@@ -112,5 +112,10 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		content_type, chat_type, chat_id = telepot.glance(msg)
 
 		if content_type == 'text':
-			if msg['text'].lower() == 'add':
+			text = msg['text'].lower()
+
+			if text == 'add':
 				self.new_event()
+			elif text == '/wann':
+				for i, v in enumerate(self._events):
+					self.sender.sendMessage(self.event_introduction(v))
