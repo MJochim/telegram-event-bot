@@ -107,7 +107,7 @@ class EventChatHandler(telepot.helper.ChatHandler):
 
 			self.ask_next_thing(origin)
 
-		if command == 'create_date' and parameter in legalDates:
+		elif command == 'create_date' and parameter in legalDates:
 			if origin not in self._new_events:
 				self._new_events[origin] = Event()
 			self._new_events[origin].setDate(parameter)
