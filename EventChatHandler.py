@@ -5,7 +5,7 @@ from Event import Event
 
 
 legalPlaces = ['Osten', 'Westen']
-legalDates = ['Montag', 'Dienstag']
+legalDates = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
 
 
 class EventChatHandler(telepot.helper.ChatHandler):
@@ -67,10 +67,12 @@ class EventChatHandler(telepot.helper.ChatHandler):
 
 		text += "\n\nWo?"
 
-		markup = InlineKeyboardMarkup(inline_keyboard=[
-			[InlineKeyboardButton(text='Im Osten', callback_data='create_place=Osten')],
-			[InlineKeyboardButton(text='Im Westen', callback_data='create_place=Westen')],
-		])
+		inline_keyboard = []
+		for place in legalPlaces:
+			inline_keyboard.append(
+				[InlineKeyboardButton(text='Im '+place, callback_data='create_place='+place)]
+			)
+		markup = InlineKeyboardMarkup(inline_keyboard=inline_keyboard)
 
 		self.bot.editMessageText(message_id, text=text, reply_markup = markup)
 
@@ -81,10 +83,13 @@ class EventChatHandler(telepot.helper.ChatHandler):
 
 		text += "\n\nWann?"
 
-		markup = InlineKeyboardMarkup(inline_keyboard=[
-			[InlineKeyboardButton(text='Am Montag', callback_data='create_date=Montag')],
-			[InlineKeyboardButton(text='Am Dienstag', callback_data='create_date=Dienstag')],
-		])
+		inline_keyboard = []
+		for day in legalDates:
+			inline_keyboard.append(
+				[InlineKeyboardButton(text='Am '+day, callback_data='create_date='+day)]
+			)
+
+		markup = InlineKeyboardMarkup(inline_keyboard=inline_keyboard)
 
 		self.bot.editMessageText(message_id, text=text, reply_markup = markup)
 
