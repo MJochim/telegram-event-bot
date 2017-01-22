@@ -128,8 +128,8 @@ class EventChatHandler(telepot.helper.ChatHandler):
 		if content_type == 'text':
 			text = msg['text'].lower()
 
-			if text == '/klettern':
+			if text.startswith("/klettern"):
 				self.new_event()
-			elif text == '/wann':
+			elif text.startswith("/wann"):
 				for i, v in enumerate(self._events):
 					self.sender.sendMessage(self.event_introduction(v))
